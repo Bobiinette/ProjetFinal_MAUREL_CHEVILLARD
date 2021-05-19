@@ -11,8 +11,12 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
+<<<<<<< HEAD:Pages/Shared/_Layout.cshtml
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">p08</a>
                 <a class="navbar-brand" asp-controller="Movies" asp-action="Index">Movie App (P08)</a>
+=======
+                <a class="navbar-brand" asp-area="" asp-page="/Index">ProjetFinal_MAUREL_CHEVILLARD</a>
+>>>>>>> b175a2b0760284fd98838b24d125f5805d6177f2:Views/Shared/_Layout.cshtml
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,10 +24,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
                     </ul>
                 </div>
@@ -38,12 +42,18 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
+<<<<<<< HEAD:Pages/Shared/_Layout.cshtml
             &copy; 2021 - p08 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+=======
+            &copy; 2021 - ProjetFinal_MAUREL_CHEVILLARD - <a asp-area="" asp-page="/Privacy">Privacy</a>
+>>>>>>> b175a2b0760284fd98838b24d125f5805d6177f2:Views/Shared/_Layout.cshtml
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
