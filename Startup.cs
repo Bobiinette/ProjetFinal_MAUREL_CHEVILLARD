@@ -25,10 +25,7 @@ namespace ProjetFinal_MAUREL_CHEVILLARD
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-<<<<<<< HEAD
-            //services.AddControllersWithViews();
-=======
->>>>>>> b175a2b0760284fd98838b24d125f5805d6177f2
+
             services.AddRazorPages();
 
             services.AddDbContext<ProjetFinal_MAUREL_CHEVILLARDContext>(options =>
