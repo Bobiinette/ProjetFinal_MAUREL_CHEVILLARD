@@ -1,0 +1,130 @@
+﻿@page
+@model ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Freelance</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Freelance.Id" />
+            <div class="form-group">
+                <label asp-for="Freelance.ResidenceCountry" class="control-label"></label>
+                <input asp-for="Freelance.ResidenceCountry" class="form-control" />
+                <span asp-validation-for="Freelance.ResidenceCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.WorkCountry" class="control-label"></label>
+                <input asp-for="Freelance.WorkCountry" class="form-control" />
+                <span asp-validation-for="Freelance.WorkCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.DayPrice" class="control-label"></label>
+                <input asp-for="Freelance.DayPrice" class="form-control" />
+                <span asp-validation-for="Freelance.DayPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.HourPrice" class="control-label"></label>
+                <input asp-for="Freelance.HourPrice" class="form-control" />
+                <span asp-validation-for="Freelance.HourPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.MonthPrice" class="control-label"></label>
+                <input asp-for="Freelance.MonthPrice" class="form-control" />
+                <span asp-validation-for="Freelance.MonthPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.TurnOver" class="control-label"></label>
+                <input asp-for="Freelance.TurnOver" class="form-control" />
+                <span asp-validation-for="Freelance.TurnOver" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Freelance.NotKnowPrice" /> @Html.DisplayNameFor(model => model.Freelance.NotKnowPrice)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.NetSalary" class="control-label"></label>
+                <input asp-for="Freelance.NetSalary" class="form-control" />
+                <span asp-validation-for="Freelance.NetSalary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.BrutSalary" class="control-label"></label>
+                <input asp-for="Freelance.BrutSalary" class="form-control" />
+                <span asp-validation-for="Freelance.BrutSalary" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.MonthDuration" class="control-label"></label>
+                <input asp-for="Freelance.MonthDuration" class="form-control" />
+                <span asp-validation-for="Freelance.MonthDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.DayByMonthDuration" class="control-label"></label>
+                <input asp-for="Freelance.DayByMonthDuration" class="form-control" />
+                <span asp-validation-for="Freelance.DayByMonthDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Freelance.LessOneMonthDuration" /> @Html.DisplayNameFor(model => model.Freelance.LessOneMonthDuration)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.Civility" class="control-label"></label>
+                <input asp-for="Freelance.Civility" class="form-control" />
+                <span asp-validation-for="Freelance.Civility" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.Lastname" class="control-label"></label>
+                <input asp-for="Freelance.Lastname" class="form-control" />
+                <span asp-validation-for="Freelance.Lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.Firstname" class="control-label"></label>
+                <input asp-for="Freelance.Firstname" class="form-control" />
+                <span asp-validation-for="Freelance.Firstname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.Email" class="control-label"></label>
+                <input asp-for="Freelance.Email" class="form-control" />
+                <span asp-validation-for="Freelance.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.Telephone" class="control-label"></label>
+                <input asp-for="Freelance.Telephone" class="form-control" />
+                <span asp-validation-for="Freelance.Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Freelance.ConfidentialityPoliticAccepted" /> @Html.DisplayNameFor(model => model.Freelance.ConfidentialityPoliticAccepted)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Freelance.MarketingOfferAccepted" /> @Html.DisplayNameFor(model => model.Freelance.MarketingOfferAccepted)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.SimulationDate" class="control-label"></label>
+                <input asp-for="Freelance.SimulationDate" class="form-control" />
+                <span asp-validation-for="Freelance.SimulationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

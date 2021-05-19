@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using ProjetFinal_MAUREL_CHEVILLARD.Data;
 
 namespace ProjetFinal_MAUREL_CHEVILLARD
 {
@@ -24,6 +26,9 @@ namespace ProjetFinal_MAUREL_CHEVILLARD
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<ProjetFinal_MAUREL_CHEVILLARDContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("ProjetFinal_MAUREL_CHEVILLARDContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

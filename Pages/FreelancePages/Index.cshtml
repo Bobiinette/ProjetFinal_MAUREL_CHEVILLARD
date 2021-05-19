@@ -1,0 +1,150 @@
+﻿@page
+@model ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].ResidenceCountry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].WorkCountry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].DayPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].HourPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].MonthPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].TurnOver)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].NotKnowPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].NetSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].BrutSalary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].MonthDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].DayByMonthDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].LessOneMonthDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].Civility)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].Lastname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].Firstname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].Telephone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].ConfidentialityPoliticAccepted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].MarketingOfferAccepted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Freelance[0].SimulationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Freelance) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResidenceCountry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WorkCountry)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HourPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TurnOver)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NotKnowPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NetSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BrutSalary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MonthDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DayByMonthDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LessOneMonthDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Civility)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telephone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConfidentialityPoliticAccepted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MarketingOfferAccepted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SimulationDate)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
