@@ -1,0 +1,33 @@
+﻿@page
+@model ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages.ConnaissanceModel
+
+@{
+    ViewData["Title"] = "Connaissance";
+}
+
+<h1>1 - Informations g&eacute;ographiques</h1>
+
+<h4>Vous avez la possibilité de pouvoir travailler en Europe et ainsi gagner en mobilité et en opportunité !</h4>
+<hr />
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Freelance.ResidenceCountry" class="control-label">Pays de r&eacute;sidence</label>
+                <input asp-for="Freelance.ResidenceCountry" class="form-control" />
+                <span asp-validation-for="Freelance.ResidenceCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.WorkCountry" class="control-label">Pays de travail</label>
+                <input asp-for="Freelance.WorkCountry" class="form-control" />
+                <span asp-validation-for="Freelance.WorkCountry" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Suivant" class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("actionName", "controllerName") + "'");" />
+            </div>
+        </form>
+    </div>
+</div>
