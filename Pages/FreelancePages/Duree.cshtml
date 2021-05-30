@@ -1,0 +1,75 @@
+﻿@page
+@model ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages.DureeModel
+@{
+    ViewData["Title"] = "Durée de votre mission";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div choice>
+                <label><input type="radio" name="dureeConnue" value="y" />Je connais la durée</label>
+                <label><input type="radio" name="dureeConnue" value="n" />Je ne connais pas la durée</label>
+            </div>
+
+
+            <div class="y box">
+                <div class="form-group">
+                    <label asp-for="Freelance.MonthDuration" class="control-label"></label>
+                    <input asp-for="Freelance.MonthDuration" class="form-control" />
+                    <span asp-validation-for="Freelance.MonthDuration" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Freelance.DayByMonthDuration" class="control-label"></label>
+                    <input asp-for="Freelance.DayByMonthDuration" class="form-control" />
+                    <span asp-validation-for="Freelance.DayByMonthDuration" class="text-danger"></span>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Freelance.LessOneMonthDuration" /> @Html.DisplayNameFor(model => model.Freelance.LessOneMonthDuration)
+                    </label>
+                </div>
+            </div>
+            <div class="n box">
+                <label>Je ne connais pas la durée</label>
+            </div>
+
+
+                <div class="form-group">
+                    <input type="submit" value="Page suivante" class="btn btn-primary" />
+                </div>
+
+        </form>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('input[type="radio"]').click(function () {
+            var inputValue = $(this).attr("value");
+            var targetBox = $("." + inputValue);
+            $(".box").not(targetBox).hide();
+            $(targetBox).show();
+        });
+    });
+</script>
+
+<style>
+    .box {
+        color: #fff;
+        padding: 20px;
+        display: none;
+        margin-top: 20px;
+    }
+    .red {
+        background: #ff0000;
+    }
+    .green {
+        background: #228B22;
+    }
+    .blue {
+        background: #0000ff;
+    }
+</style>
