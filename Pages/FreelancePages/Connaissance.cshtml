@@ -13,7 +13,7 @@
 
 <div class="row">
     <div class="col-md-4">
-        <form method="post">
+        <form method="get" asp-page="TarifPrestation">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Freelance.ResidenceCountry" class="control-label">Pays de r&eacute;sidence</label>
@@ -26,7 +26,7 @@
                 <span asp-validation-for="Freelance.WorkCountry" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="button" value="Suivant" class="btn btn-primary" onclick="@("window.location.href='" + @Url.Action("actionName", "controllerName") + "'");" />
+                <input type="submit" value="Suivant" />
             </div>
         </form>
     </div>

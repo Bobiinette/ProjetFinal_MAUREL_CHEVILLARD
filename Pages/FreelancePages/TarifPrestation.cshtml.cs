@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 using ProjetFinal_MAUREL_CHEVILLARD.Models;
 
 namespace ProjetFinal_MAUREL_CHEVILLARD.Pages
@@ -18,12 +19,12 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            return Page();
+            Page();
         }
 
-        [BindProperty]
+        [BindProperty(SupportsGet= true)]
         public Freelance Freelance { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
