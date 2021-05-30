@@ -6,14 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using ProjetFinal_MAUREL_CHEVILLARD.Models;
 
-namespace ProjetFinal_MAUREL_CHEVILLARD.Pages
+namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
 {
-    public class TarifPrestationModel : PageModel
+    public class RemunerationModel : PageModel
     {
-
         private readonly ProjetFinal_MAUREL_CHEVILLARD.Data.ProjetFinal_MAUREL_CHEVILLARDContext _context;
 
-        public TarifPrestationModel(ProjetFinal_MAUREL_CHEVILLARD.Data.ProjetFinal_MAUREL_CHEVILLARDContext context)
+        public RemunerationModel(ProjetFinal_MAUREL_CHEVILLARD.Data.ProjetFinal_MAUREL_CHEVILLARDContext context)
         {
             _context = context;
         }
@@ -39,7 +38,5 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages
 
             return RedirectToPage("./Index");
         }
-
     }
-
 }
