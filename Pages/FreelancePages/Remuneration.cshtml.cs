@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -32,6 +33,15 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
             {
                 return Page();
             }
+            if (TempData["Freelance"] != null)
+            {
+                //Fusion the temp object and the submit object
+                string freelance_json = TempData["Freelance"] as string;
+                this.Freelance = JsonSerializer.Deserialize<Freelance>(freelance_json).Fusion(this.Freelance, 
+                    new string[] { "NetSalary", "BrutSalary" });
+            }
+            //Save the new temp object
+            TempData["Freelance"] = JsonSerializer.Serialize(this.Freelance);
 
             _context.Freelance.Add(Freelance);
             await _context.SaveChangesAsync();

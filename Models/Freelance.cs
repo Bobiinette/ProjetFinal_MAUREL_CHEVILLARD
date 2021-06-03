@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace ProjetFinal_MAUREL_CHEVILLARD.Models
@@ -53,6 +55,20 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Models
         public Freelance()
         {
 
+        }
+
+        public Freelance Fusion(Freelance f, String[] properties)
+        {
+            //Foreach on the attributes of f to copy paste the value of all non null properties in this
+            foreach (String property in properties)
+            {
+                var attr = f.GetType().GetProperty(property).GetValue(f);
+                if (attr != null)
+                {
+                    this.GetType().GetProperty(property).SetValue(this, attr);
+                }
+            }
+            return this;
         }
     }
 }
