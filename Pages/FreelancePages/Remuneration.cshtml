@@ -11,15 +11,16 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div class="form-group">
-                <label asp-for="Freelance.NetSalary" class="control-label"></label>
-                <input asp-for="Freelance.NetSalary" class="form-control" />
+                <label asp-for="Freelance.NetSalary" class="control-label">Salaire net</label>
+                <input asp-for="Freelance.NetSalary" class="form-control" value="0"/>
                 <span asp-validation-for="Freelance.NetSalary" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Freelance.BrutSalary" class="control-label"></label>
-                <input asp-for="Freelance.BrutSalary" class="form-control" />
+                <label asp-for="Freelance.BrutSalary" class="control-label">Salaire brut</label>
+                <input asp-for="Freelance.BrutSalary" class="form-control" value="0"/>
                 <span asp-validation-for="Freelance.BrutSalary" class="text-danger"></span>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Page suivante" class="btn btn-primary" />
             </div>

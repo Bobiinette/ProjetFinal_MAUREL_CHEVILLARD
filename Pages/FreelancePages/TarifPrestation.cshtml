@@ -10,28 +10,28 @@
     <div class="col-md-4">
         <form method="post">
             <div class="form-group">
-                <label asp-for="Freelance.DayPrice" class="control-label"></label>
-                <input asp-for="Freelance.DayPrice" class="form-control" />
+                <label asp-for="Freelance.DayPrice" class="control-label">Tarif journalier (€/jour)</label>
+                <input asp-for="Freelance.DayPrice" class="form-control" value="0"/>
                 <span asp-validation-for="Freelance.DayPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Freelance.HourPrice" class="control-label"></label>
-                <input asp-for="Freelance.HourPrice" class="form-control" />
+                <label asp-for="Freelance.HourPrice" class="control-label">Tarif horaire (€/jour)</label>
+                <input asp-for="Freelance.HourPrice" class="form-control" value="0"/>
                 <span asp-validation-for="Freelance.HourPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Freelance.MonthPrice" class="control-label"></label>
-                <input asp-for="Freelance.MonthPrice" class="form-control" />
+                <label asp-for="Freelance.MonthPrice" class="control-label">Tarif mensuel</label>
+                <input asp-for="Freelance.MonthPrice" class="form-control" value="0"/>
                 <span asp-validation-for="Freelance.MonthPrice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Freelance.TurnOver" class="control-label"></label>
-                <input asp-for="Freelance.TurnOver" class="form-control" />
+                <label asp-for="Freelance.TurnOver" class="control-label">Chiffre d'affaire (€)</label>
+                <input asp-for="Freelance.TurnOver" class="form-control" value="0"/>
                 <span asp-validation-for="Freelance.TurnOver" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Freelance.NotKnowPrice" /> @Html.DisplayNameFor(model => model.Freelance.NotKnowPrice)
+                    <input class="form-check-input" asp-for="Freelance.NotKnowPrice" />Je ne connais pas mon tarif <!--@Html.DisplayNameFor(model => model.Freelance.NotKnowPrice)-->
                 </label>
             </div>
 
