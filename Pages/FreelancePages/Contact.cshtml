@@ -1,0 +1,55 @@
+﻿@page
+@model ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages.ContactModel
+
+<h4>Freelance</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Freelance.Civility" class="control-label"></label>
+                <input asp-for="Freelance.Civility" class="form-control" />
+                <span asp-validation-for="Freelance.Civility" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.Lastname" class="control-label"></label>
+                <input asp-for="Freelance.Lastname" class="form-control" />
+                <span asp-validation-for="Freelance.Lastname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.Firstname" class="control-label"></label>
+                <input asp-for="Freelance.Firstname" class="form-control" />
+                <span asp-validation-for="Freelance.Firstname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.Email" class="control-label"></label>
+                <input asp-for="Freelance.Email" class="form-control" />
+                <span asp-validation-for="Freelance.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Freelance.Telephone" class="control-label"></label>
+                <input asp-for="Freelance.Telephone" class="form-control" />
+                <span asp-validation-for="Freelance.Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Freelance.ConfidentialityPoliticAccepted" /> @Html.DisplayNameFor(model => model.Freelance.ConfidentialityPoliticAccepted)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Freelance.MarketingOfferAccepted" /> @Html.DisplayNameFor(model => model.Freelance.MarketingOfferAccepted)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
