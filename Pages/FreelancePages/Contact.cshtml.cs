@@ -35,6 +35,15 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
             {
                 return Page();
             }
+            else
+            {
+                if (!Freelance.ConfidentialityPoliticAccepted)
+                    ModelState.AddModelError("", "Veuillez accepter la politique de confidentialité");
+                if (!Freelance.MarketingOfferAccepted)
+                    ModelState.AddModelError("", "Veuillez accepter l'envoie de l'offre");
+                if (!Freelance.ConfidentialityPoliticAccepted | !Freelance.MarketingOfferAccepted)
+                    return Page();
+            }
             if (TempData["Freelance"] != null)
             {
                 //Fusion the temp object and the submit object
