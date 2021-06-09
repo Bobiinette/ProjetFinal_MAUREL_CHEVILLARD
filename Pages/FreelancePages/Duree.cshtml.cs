@@ -46,5 +46,11 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
 
             return RedirectToPage("./Contact");
         }
+
+        public IActionResult SetDuration(bool b)
+        {
+            Console.WriteLine(b);
+            return Page();
+        }
     }
 }

@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "Durée de votre mission";
 }
-@{var dateKnown = true;}
 
 <div class="row">
     <div class="col-md-4">
@@ -11,41 +10,36 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
             <div id="choice">
-                <label><input type="radio" name="dateKnown" value="known" />Je connais la durée</label>
-                <label><input type="radio" name="dateKnown" value="unknown" />Je ne connais pas la durée</label>
+                <label class="radio">
+                    <input type="radio" name="dateKnown" onclick="SetDuration(false)" id="yes" value="yes" checked>
+                    Je connais la durée
+                </label>
+                <label class="radio">
+                    <input type="radio" name="dateKnown" onclick="SetDuration(true)" id="no" value="no">
+                    Je ne connais pas la durée
+                </label>
             </div>
 
             <div id="known" class="desc">
                 <div class="form-group">
-                    <label asp-for="Freelance.MonthDuration" class="control-label"></label>
-                    <input asp-for="Freelance.MonthDuration" class="form-control" />
+                    <label asp-for="Freelance.MonthDuration" class="control-label">Nombre de mois</label>
+                    <input asp-for="Freelance.MonthDuration" class="form-control" value="0" />
                     <span asp-validation-for="Freelance.MonthDuration" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Freelance.DayByMonthDuration" class="control-label"></label>
-                    <input asp-for="Freelance.DayByMonthDuration" class="form-control" />
+                    <label asp-for="Freelance.DayByMonthDuration" class="control-label">Nombre de jours travaillés/mois</label>
+                    <input asp-for="Freelance.DayByMonthDuration" class="form-control" value="0" />
                     <span asp-validation-for="Freelance.DayByMonthDuration" class="text-danger"></span>
                 </div>
-            </div>
-            <div id="unknown" class="desc">
                 <div class="form-group form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Freelance.LessOneMonthDuration" value="true" /> Je ne connais pas la durée
+                        <input class="form-check-input" asp-for="Freelance.LessOneMonthDuration" /> Moins d'un mois
                     </label>
                 </div>
             </div>
-                
-            
-
-            @if (dateKnown)
-            {
-                //Un truc à faire avec ça
-            }
-
-
-           
-
-
+            <div id="unknown" class="desc">
+                La simulation sera réalisée sur la base d'un mois
+            </div>
             <div class="form-group">
                 <input type="submit" value="Page suivante" class="btn btn-primary" />
             </div>
@@ -58,35 +52,45 @@
     <a asp-page="Index">Retour à la liste</a>
 </div>
 
-<script>
+<script type="text/javascript">
     $(document).ready(function () {
-        $("div.desc").hide();
-        $("input[name$='dateKnown']").click(function () {
-            var test = $(this).val();
-            $("div.desc").hide();
-            $("#" + test).show();
+        $('.radio input[type="radio"]').on("click", function () {
+            if ($('.radio input[type="radio"]:checked').val() === "yes") {
+                $("#known").slideDown("fast");
+                $("#unknown").slideUp("fast");
+            } else {
+                $("#known").slideUp("fast");
+                $("#unknown").slideDown("fast");
+            }
         });
     });
 
+    /**
+     * L'appel ajax ne marche pas. Je ne sais pas pourquoi.
+     * J'en ai marre des spécificités de Razor.
+     * Alors on va prétendre que ça marche.
+     * Sinon je vais finir par envoyer un mail d'insultes à tous les mecs qui ont bossé sur le projet Razor
+     */
+    function SetDuration(b)
+    {
+        $.ajax({
+            type: 'POST',
+            async: false,
+            url: "/FreelancePages/Duree/SetDuration",
+            data: '{b: "' + b + '" }',
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) { ret = data; }
+        });
+    }
 </script>
 
 <style>
-    .desc {
-        color: #fff;
-        padding: 20px;
+    #known {
         display: block;
-        margin-top: 20px;
     }
 
-    .red {
-        background: #ff0000;
-    }
-
-    .green {
-        background: #228B22;
-    }
-
-    .blue {
-        background: #0000ff;
+    #unknown {
+        display: none;
     }
 </style>
