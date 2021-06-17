@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -41,7 +42,9 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
                     ModelState.AddModelError("", "Veuillez accepter la politique de confidentialité");
                 if (!Freelance.MarketingOfferAccepted)
                     ModelState.AddModelError("", "Veuillez accepter l'envoie de l'offre");
-                if (!Freelance.ConfidentialityPoliticAccepted | !Freelance.MarketingOfferAccepted)
+                if (Freelance.Email == String.Empty)
+                    ModelState.AddModelError("", "Veuillez saisir une adresse email valide");
+                if (!Freelance.ConfidentialityPoliticAccepted | !Freelance.MarketingOfferAccepted | Freelance.Email == String.Empty)
                     return Page();
             }
             if (TempData["Freelance"] != null)
@@ -51,13 +54,12 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
                 this.Freelance = JsonSerializer.Deserialize<Freelance>(freelance_json).Fusion(this.Freelance,
                     new string[] { "Civility", "Lastname", "Firstname", "Email", "Telephone", "ConfidentialityPoliticAccepted", "MarketingOfferAccepted" });
             }
-            //Save the new temp object
-            TempData["Freelance"] = JsonSerializer.Serialize(this.Freelance);
+            Freelance.SimulationDate = System.DateTime.Now;
 
             _context.Freelance.Add(Freelance);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Simulation", new { id = Freelance.Id });
         }
     }
 }

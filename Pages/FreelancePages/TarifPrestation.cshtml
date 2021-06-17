@@ -9,29 +9,55 @@
 <div class="row">
     <div class="col-md-4">
         <form method="post">
-            <div class="form-group">
+            <div>
+                <label class="radio">
+                    <input type="radio" name="Tarif" id="day" value="day" checked>
+                    Tarif journalier (€/jour)
+                </label>
+                <br />
+                <label class="radio">
+                    <input type="radio" name="Tarif" id="hour" value="hour">
+                    Tarif horaire (€/heure)
+                </label>
+                <br />
+                <label class="radio">
+                    <input type="radio" name="Tarif" id="month" value="month">
+                    Tarif mensuel
+                </label>
+                <br />
+                <label class="radio">
+                    <input type="radio" name="Tarif" id="turnOver" value="turnOver">
+                    Chiffre d'affaire (€)
+                </label>
+                <label class="radio">
+                    <input type="radio" name="Tarif" id="notKnowPrice" value="notKnowPrice">
+                    Je ne connais pas mon tarif
+                </label>
+            </div>
+
+            <div id="dayInputDiv" class="form-group">
                 <label asp-for="Freelance.DayPrice" class="control-label">Tarif journalier (€/jour)</label>
-                <input asp-for="Freelance.DayPrice" class="form-control" value="0"/>
+                <input id="dayInput" asp-for="Freelance.DayPrice" class="form-control" value="0" />
                 <span asp-validation-for="Freelance.DayPrice" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Freelance.HourPrice" class="control-label">Tarif horaire (€/jour)</label>
-                <input asp-for="Freelance.HourPrice" class="form-control" value="0"/>
+            <div id="hourInputDiv" class="form-group" style="display:none">
+                <label asp-for="Freelance.HourPrice" class="control-label">Tarif horaire (€/heure)</label>
+                <input id="hourInput" asp-for="Freelance.HourPrice" class="form-control" value="0" />
                 <span asp-validation-for="Freelance.HourPrice" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div id="monthInputDiv" class="form-group" style="display:none">
                 <label asp-for="Freelance.MonthPrice" class="control-label">Tarif mensuel</label>
-                <input asp-for="Freelance.MonthPrice" class="form-control" value="0"/>
+                <input id="monthInput" asp-for="Freelance.MonthPrice" class="form-control" value="0" />
                 <span asp-validation-for="Freelance.MonthPrice" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div id="turnOverInputDiv" class="form-group" style="display:none">
                 <label asp-for="Freelance.TurnOver" class="control-label">Chiffre d'affaire (€)</label>
-                <input asp-for="Freelance.TurnOver" class="form-control" value="0"/>
+                <input id="turnOverInput" asp-for="Freelance.TurnOver" class="form-control" value="0" />
                 <span asp-validation-for="Freelance.TurnOver" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
+            <div class="form-group form-check" style="display:none">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Freelance.NotKnowPrice" />Je ne connais pas mon tarif <!--@Html.DisplayNameFor(model => model.Freelance.NotKnowPrice)-->
+                    <input id="notKnowPriceInput" class="form-check-input" asp-for="Freelance.NotKnowPrice" />
                 </label>
             </div>
 
@@ -46,3 +72,83 @@
     <a asp-page="Index">Retour à la liste</a>
 </div>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.radio input[type="radio"]').on("click", function () {
+            switch ($('.radio input[type="radio"]:checked').val()) {
+                case "day":
+                    if ($("#dayInputDiv").css("display") === "none") {
+                        $("#dayInputDiv").slideDown("fast");
+                    }
+                    if ($("#hourInputDiv").css("display") !== "none") {
+                        $("#hourInputDiv").slideUp("fast");
+                    }
+                    if ($("#monthInputDiv").css("display") !== "none") {
+                        $("#monthInputDiv").slideUp("fast");
+                    }
+                    if ($("#turnOverInputDiv").css("display") !== "none") {
+                        $("#turnOverInputDiv").slideUp("fast");
+                    }
+                    $("#notKnowPriceInput").value = "0";
+                    break;
+                case "hour":
+                    if ($("#dayInputDiv").css("dayInput") !== "none") {
+                        $("#dayInputDiv").slideUp("fast");
+                    }
+                    if ($("#hourInputDiv").css("display") === "none") {
+                        $("#hourInputDiv").slideDown("fast");
+                    }
+                    if ($("#monthInputDiv").css("display") !== "none") {
+                        $("#monthInputDiv").slideUp("fast");
+                    }
+                    if ($("#turnOverInputDiv").css("display") !== "none") {
+                        $("#turnOverInputDiv").slideUp("fast");
+                    }
+                    $("#notKnowPriceInput").value = "0";
+                    break;
+                case "month":
+                    if ($("#dayInputDiv").css("dayInput") !== "none") {
+                        $("#dayInputDiv").slideUp("fast");
+                    }
+                    if ($("#hourInputDiv").css("display") !== "none") {
+                        $("#hourInputDiv").slideUp("fast");
+                    }
+                    if ($("#monthInputDiv").css("display") === "none") {
+                        $("#monthInputDiv").slideDown("fast");
+                    }
+                    if ($("#turnOverInputDiv").css("display") !== "none") {
+                        $("#turnOverInputDiv").slideUp("fast");
+                    }
+                    $("#notKnowPriceInput").value = "0";
+                    break;
+                case "turnOver":
+                    if ($("#dayInputDiv").css("dayInput") !== "none") {
+                        $("#dayInputDiv").slideUp("fast");
+                    }
+                    if ($("#hourInputDiv").css("display") !== "none") {
+                        $("#hourInputDiv").slideUp("fast");
+                    }
+                    if ($("#monthInputDiv").css("display") !== "none") {
+                        $("#monthInputDiv").slideUp("fast");
+                    }
+                    if ($("#turnOverInputDiv").css("display") === "none") {
+                        $("#turnOverInputDiv").slideDown("fast");
+                    }
+                    $("#notKnowPriceInput").value = "0";
+                    break;
+                case "notKnowPrice":
+                    $("#dayInputDiv").slideUp("fast");
+                    $("#hourInputDiv").slideUp("fast");
+                    $("#monthInputDiv").slideUp("fast");
+                    $("#turnOverInputDiv").slideUp("fast");
+                    $("#notKnowPriceInput").value = "1";
+                    break;
+                default:
+            }
+            $("#dayInput").value = "0";
+            $("#hourInput").value = "0";
+            $("#monthInput").value = "0";
+            $("#turnOverInput").value = "0";
+        });
+    });
+</script>

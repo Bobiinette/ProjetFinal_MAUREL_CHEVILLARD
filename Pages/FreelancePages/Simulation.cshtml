@@ -1,0 +1,136 @@
+﻿@page
+@model ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages.SimulationModel
+@{
+    ViewData["Title"] = "Votre Simulation";
+}
+<h4>Recevez votre simulation par email</h4>
+<div class="row">
+    <div class="col-md-12">
+        <div class="infos">
+            <h2>Pretentions salariales</h2>
+            <span>@ViewData["grossSalary"]€ Brut</span>
+            <br />
+            <span>@ViewData["netSalary"]€ Net</span>
+        </div>
+        <br />
+        <div class="infos">
+            <h2>Durée mission</h2>
+            <span>@ViewData["duration"] mois</span>
+        </div>
+        <br /><br />
+        <div class="infosLine infos">
+            <h4> Calcul de votre salaire</h4>
+            <div>
+                <span class="infosLineTitre">Chiffre d'affaires encaissé HT global</span>
+                <span class="infosLineValeur">@ViewData["turnover"]€</span>
+            </div>
+            <div>
+                <span class="infosLineTitre">Chiffre d'affaires encaissé HT/mois</span>
+                <span class="infosLineValeur">@ViewData["turnoverPerMonth"]€/mois</span>
+            </div>
+            <div>
+                <span class="infosLineTitre">Masse salariale</span>
+                <span class="infosLineValeur">@ViewData["grossSalaryGenerated"]€</span>
+            </div>
+            <div>
+                <span class="infosLineTitre">Cotisations patronales</span>
+                <span class="infosLineValeur">@ViewData["employerContributions"]€</span>
+            </div>
+            <div>
+                <span class="infosLineTitre">Salaire brut/mois</span>
+                <span class="infosLineValeur">@ViewData["grossSalaryGeneratedPerMonth"]€/mois</span>
+            </div>
+            <div>
+                <span class="infosLineTitre">Cotisations salariales</span>
+                <span class="infosLineValeur">@ViewData["employeContributions"]€</span>
+            </div>
+            <div>
+                <span class="infosLineTitre">Net à payer avant impots</span>
+                <span class="infosLineValeur">@ViewData["netSalary"]€</span>
+            </div>
+        </div>
+
+        <div>
+            <canvas id="myChart"></canvas>
+        </div>
+
+
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Retour à la liste</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const data = {
+        labels: [
+            'Montant brut généré',
+            'Charges patronales',
+            'Intéressement',
+            'Notes de frais',
+            'Frais de gestion'
+        ],
+        datasets: [{
+            label: 'Ventilation de votre chiffre d\'affaire',
+            data: [
+                @ViewData["grossSalaryGenerated"],
+                @ViewData["employerContributions"],
+                @ViewData["incentive"],
+                @ViewData["expenses"],
+                @ViewData["charges"]
+            ],
+            backgroundColor: [
+                'rgb(38, 70, 83)',
+                'rgb(42, 157, 143)',
+                'rgb(233, 196, 106)',
+                'rgb(244, 162, 97)',
+                'rgb(231, 111, 81)'
+            ],
+            hoverOffset: 4
+        }]
+    };
+
+    const config = {
+        type: 'doughnut',
+        data: data,
+    };
+
+    var myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
+</script>
+
+
+<style>
+    .infos {
+        display: block;
+        border: solid;
+        border-color: darkred;
+        padding: 5px;
+        border-radius: 25px;
+    }
+
+    .infosLine {
+        display: block;
+    }
+
+    .infosLineTitre {
+        float: left;
+        width: 100%;
+        text-align: right;
+    }
+
+    .infosLineValeur {
+        float: right;
+        width: 100%;
+        text-align: center;
+    }
+
+    .infosLine div {
+        display: inline-flex;
+        width: 100%
+    }
+</style>

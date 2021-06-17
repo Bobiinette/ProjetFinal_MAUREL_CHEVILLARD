@@ -9,7 +9,7 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div id="choice">
+            <div>
                 <label class="radio">
                     <input type="radio" name="dateKnown" onclick="SetDuration(false)" id="yes" value="yes" checked>
                     Je connais la durée
@@ -23,12 +23,12 @@
             <div id="known" class="desc">
                 <div class="form-group">
                     <label asp-for="Freelance.MonthDuration" class="control-label">Nombre de mois</label>
-                    <input asp-for="Freelance.MonthDuration" class="form-control" value="0" />
+                    <input id="MonthDurationInput" asp-for="Freelance.MonthDuration" class="form-control" value="0" />
                     <span asp-validation-for="Freelance.MonthDuration" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Freelance.DayByMonthDuration" class="control-label">Nombre de jours travaillés/mois</label>
-                    <input asp-for="Freelance.DayByMonthDuration" class="form-control" value="0" />
+                    <input id="DayByMonthDurationInput" asp-for="Freelance.DayByMonthDuration" class="form-control" value="0" />
                     <span asp-validation-for="Freelance.DayByMonthDuration" class="text-danger"></span>
                 </div>
                 <div class="form-group form-check">
@@ -65,23 +65,15 @@
         });
     });
 
-    /**
-     * L'appel ajax ne marche pas. Je ne sais pas pourquoi.
-     * J'en ai marre des spécificités de Razor.
-     * Alors on va prétendre que ça marche.
-     * Sinon je vais finir par envoyer un mail d'insultes à tous les mecs qui ont bossé sur le projet Razor
-     */
     function SetDuration(b)
     {
-        $.ajax({
-            type: 'POST',
-            async: false,
-            url: "/FreelancePages/Duree/SetDuration",
-            data: '{b: "' + b + '" }',
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: function (data) { ret = data; }
-        });
+        if (b) {
+            document.getElementById("MonthDurationInput").value = "1";
+            document.getElementById("DayByMonthDurationInput").value = "20";
+        } else {
+            document.getElementById("MonthDurationInput").value = "0";
+            document.getElementById("DayByMonthDurationInput").value = "0";
+        }
     }
 </script>
 
