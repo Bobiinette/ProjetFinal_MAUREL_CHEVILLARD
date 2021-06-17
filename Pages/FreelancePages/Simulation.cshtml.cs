@@ -17,13 +17,15 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
     public class SimulationModel : PageModel
     {
         private readonly ProjetFinal_MAUREL_CHEVILLARD.Data.ProjetFinal_MAUREL_CHEVILLARDContext _context;
+        private bool newSimulation = false;
 
         public SimulationModel(ProjetFinal_MAUREL_CHEVILLARD.Data.ProjetFinal_MAUREL_CHEVILLARDContext context)
         {
             _context = context;
+            newSimulation = false;
         }
 
-        public async Task<IActionResult> OnGetAsync(long? id)
+        public async Task<IActionResult> OnGetAsync(long? id, bool newSimulation = false)
         {
             if (id == null)
             {
@@ -36,6 +38,7 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
             {
                 return NotFound();
             }
+            this.newSimulation = newSimulation;
             double turnover;
             int workedDays = Freelance.MonthDuration * Freelance.DayByMonthDuration;
             if (Freelance.DayPrice > 0)
@@ -64,21 +67,24 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
             double netSalary = (incentive * 0.903) + (grossSalaryGenerated * 0.824);
             double netSalaryAndExpense = netSalary + expenses;
             //Put the datas in the view data
-            ViewData["turnover"] = turnover;
-            ViewData["turnoverPerMonth"] = turnover / Freelance.MonthDuration;
+            ViewData["turnover"] = Math.Round(turnover, 2);
+            ViewData["turnoverPerMonth"] = Math.Round(turnover / Freelance.MonthDuration, 2);
             ViewData["workedDays"] = workedDays;
             ViewData["duration"] = Freelance.MonthDuration;
-            ViewData["charges"] = charges;
-            ViewData["expenses"] = expenses;
-            ViewData["incentive"] = incentive;
-            ViewData["chargedGrossSalary"] = chargedGrossSalary;
-            ViewData["employerContributions"] = employerContributions;
-            ViewData["grossSalaryGenerated"] = grossSalaryGenerated;
-            ViewData["grossSalaryGeneratedPerMonth"] = grossSalaryGenerated / Freelance.MonthDuration;
-            ViewData["employeContributions"] = employeContributions;
-            ViewData["netSalary"] = netSalary;
-            ViewData["netSalaryAndExpense"] = netSalaryAndExpense;
-            SendMail();
+            ViewData["charges"] = Math.Round(charges, 2);
+            ViewData["expenses"] = Math.Round(expenses, 2);
+            ViewData["incentive"] = Math.Round(incentive, 2);
+            ViewData["chargedGrossSalary"] = Math.Round(chargedGrossSalary, 2);
+            ViewData["employerContributions"] = Math.Round(employerContributions, 2);
+            ViewData["grossSalaryGenerated"] = Math.Round(grossSalaryGenerated, 2);
+            ViewData["grossSalaryGeneratedPerMonth"] = Math.Round(grossSalaryGenerated / Freelance.MonthDuration, 2);
+            ViewData["employeContributions"] = Math.Round(employeContributions, 2);
+            ViewData["netSalary"] = Math.Round(netSalary, 2);
+            ViewData["netSalaryAndExpense"] = Math.Round(netSalaryAndExpense, 2);
+            if (newSimulation)
+            {
+                SendMail();
+            }
             return Page();
         }
 
@@ -93,13 +99,14 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
                 smtp.DeliveryMethod = SmtpDeliveryMethod.SpecifiedPickupDirectory;
                 //Where the mails will be send
                 smtp.PickupDirectoryLocation = @"c:\maildump";
+                var body = "Retrouvez votre simulation sur la page " + @Url.PageLink("./Simulation", null, new { id = Freelance.Id });
                 var message = new MailMessage
                 {
-                    Body = "Test",
-                    Subject = "Tests avec Razor",
+                    Body = body,
+                    Subject = "Simulation du " + Freelance.SimulationDate.Day + "/" + Freelance.SimulationDate.Month + "/" + Freelance.SimulationDate.Year,
                     From = new MailAddress("nicolas.chevillard@igs-campus-toulouse.fr")
                 };
-                message.IsBodyHtml = true;
+                message.IsBodyHtml = true;  
                 message.To.Add(Freelance.Email);
                 await smtp.SendMailAsync(message);
             }

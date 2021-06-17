@@ -59,7 +59,7 @@ namespace ProjetFinal_MAUREL_CHEVILLARD.Pages.FreelancePages
             _context.Freelance.Add(Freelance);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Simulation", new { id = Freelance.Id });
+            return RedirectToPage("./Simulation", new { id = Freelance.Id , newSimulation = true});
         }
     }
 }
